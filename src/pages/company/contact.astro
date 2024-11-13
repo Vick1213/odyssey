@@ -1,10 +1,9 @@
 ---
-import ContactForm from '../../components/forms/ContactForm.astro';
 import Layout from '../../layouts/Page.astro';
 import { Container } from '@components/odyssey-theme';
 
 const seo = {
-	title: 'Contact | Astro Odyssey Theme',
+	title: 'Contact | SocialScape',
 	description: 'Contact Page',
 };
 ---
@@ -15,22 +14,22 @@ const seo = {
 			<div class="contact-hero__text-section">
 				<h1>Contact Us</h1>
 				<p>
-					This is a contact form using Odyssey's form components to create a
-					contact form component. The contact form is setup to use Netlify's
-					form detection; however, it can easily be translated to other popular
-					form services such as Formspree, Getform, Formspark, etc.
+					We’d love to hear from you! Whether you’re looking for more information about our services or ready to take the next step, feel free to reach out.
 				</p>
 				<div>
 					<p>
-						<em><a href="tel:8008675309">(800) 867-5309</a></em> • <em
-							><a href="mailto:hello@odysseytheme.com">hello@ourcompany.com</a
+						<em><a href="tel:+14809526946">(480) 952-6946</a></em> • <em
+							><a href="mailto:contact@trysocialscape.co.uk">contact@trysocialscape.co.uk</a
 							></em
 						>
 					</p>
 				</div>
 			</div>
 			<div class="col-2__container">
-				<ContactForm />
+				<!-- Calendly inline widget begin -->
+				<div class="calendly-inline-widget" data-url="https://calendly.com/socialscape0/marketing-solutions-wrap-up" style="min-width:320px;height:700px;"></div>
+				<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+				<!-- Calendly inline widget end -->
 			</div>
 		</section>
 	</Container>
