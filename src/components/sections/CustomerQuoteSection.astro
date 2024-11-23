@@ -1,29 +1,51 @@
 ---
+const { caseStudyLink, downloadLink } = Astro.props;
 import Container from '../core/Container.astro';
-
-const {quoteText, customerName} = Astro.props;
 ---
 
 <section class="customer-quote__section">
   <Container narrow>
-    <blockquote>"{quoteText}"</blockquote>
-    <p>&mdash; {customerName}</p>
+    <div class="quote-links">
+      <a href={caseStudyLink} target="_blank" rel="noopener noreferrer" class="case-study-link">
+        View Case Study
+      </a>
+      <a href={downloadLink} download class="download-link">
+        Download Our Pitch Deck
+      </a>
+    </div>
   </Container>
 </section>
 
-  <style>
+<style>
 .customer-quote__section {
   margin: calc(var(--section-margin) * 2) auto;
   padding: 3rem;
   background-color: var(--theme-surface-1);
   text-align: center;
 }
-.customer-quote__section blockquote {
-  padding: 0;
-  border: none;
+
+.quote-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.case-study-link,
+.download-link {
   font-size: var(--font-size-md);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.8;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--theme-primary);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--theme-primary);
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.case-study-link:hover,
+.download-link:hover {
+  background-color: var(--theme-primary);
+  color: var(--theme-surface-1);
 }
 </style>
