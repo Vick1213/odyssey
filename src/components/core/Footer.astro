@@ -12,48 +12,44 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
 >
   <Container>
     <div class="footer-grid__container">
-      <div class="footer-brand__container">
-        <div style="position: relative; left: -66px;">
-          <slot name="logo" />
+      <div class="footer-logo__container">
+        <!-- Directly display the logo image -->
+        <a href="/">
+          <img src="/landingpagelogo.png" alt="Landing Page Logo" class="footer-logo__image" />
+        </a>
       </div>
-        <ul class="footer-socials__list">
-          {
-            footerSocials.map((social) => (
-              <li class="footer-socials__item">
-                <a
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="footer-socials__link"
-                  title={`Open ${social.name} profile`}
-                >
-                  <Icon name={social.icon} width={24} height={24} />
-                </a>
+      <ul class="footer-socials__list">
+        {footerSocials.map((social) => (
+          <li class="footer-socials__item">
+            <a
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-socials__link"
+              title={`Open ${social.name} profile`}
+            >
+              <Icon name={social.icon} width={24} height={24} />
+            </a>
+          </li>
+        ))}
+      </ul>
+      {footerLists.map((list) => (
+        <div>
+          <p><strong>{list.title}</strong></p>
+          <ul class="footer-link__list">
+            {list.items.map((item) => (
+              <li>
+                <a href={item.slug}>{item.title}</a>
               </li>
-            ))
-          }
-        </ul>
-      </div>
-      {
-        footerLists.map((list) => (
-          <div>
-            <p><strong>{list.title}</strong></p>
-            <ul class="footer-link__list">
-              {list.items.map((item) => (
-                <li>
-                  <a href={item.slug}>{item.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
     <div class="footer-copyright__container">
-      {showPlug && <Plug/>}
+      {showPlug && <Plug />}
       <p>Copyright &copy; {new Date().getFullYear()} {copyrightName}</p>
     </div>
-
   </Container>
 </footer>
 
@@ -71,6 +67,18 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
     padding: 10vh 0 1rem 0;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  .footer-logo__container {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .footer-logo__image {
+    max-width: 150px;
+    height: auto;
   }
   .footer-socials__list {
     margin: 1rem 0;
@@ -98,26 +106,29 @@ const { footerSocials, footerLists, copyrightName, background, color, showPlug: 
   .footer-copyright__container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
   }
   .footer-copyright__container p {
     font-size: var(--font-size-sm);
   }
   @media (max-width: 768px) {
-    .footer-grid__container :first-child {
-      grid-column: 1/-1;
-    }
     .footer-grid__container {
       padding: 5vh 0;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
+    }
+    .footer-logo__container {
+      grid-column: 1 / 2;
+      justify-content: flex-start;
+      margin-bottom: 1rem;
     }
   }
   @media (max-width: 600px) {
     .footer-grid__container {
       padding: 5vh 0;
       grid-template-columns: 1fr;
-      gap: 1rem;
+    }
+    .footer-logo__container {
+      margin-bottom: 1rem;
     }
     .footer-copyright__container {
       flex-direction: column;

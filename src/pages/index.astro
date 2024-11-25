@@ -14,9 +14,9 @@ import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro'
 				Here are some Ways we can help you get the connections you need
 			</p>
 			<div class="feature-card__grid">
-				<FeatureCard href="/landing-pages/landing-1" title="Landing Page 1" imgSrc="/assets/images/home/screenshots/landing-1">
+				<FeatureCard href="/landing-pages/landing-1" title="Get to know what we can do for you" imgSrc="/assets/images/home/screenshots/landing-1">
 				</FeatureCard>
-				<FeatureCard href="/landing-pages/landing-2" title="Landing Page 2" imgSrc="/assets/images/home/screenshots/landing-2">
+				<FeatureCard href="/company/contact" title="Book a meeting Today" imgSrc="/assets/images/home/screenshots/landing-2">
 				</FeatureCard>
 			</div>
 		</section>
@@ -183,6 +183,15 @@ import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro'
     height: 100%;
     object-fit: contain;
     object-position: center;
+  }
+  @media screen and (max-width: 768px) {
+    .image-container {
+      height: 200px;
+    }
+    .image-container img {
+      object-fit: cover;
+    }
+    
   }
 
   @keyframes scroll {
