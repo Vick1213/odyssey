@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { Button, FormInput } from "@components/odyssey-theme";
 ---
 
-<form id="newsletter-form">
+<form id="newsletter-form" name="Newsletter Form">
   <div class="newsletter-form__container">
     <FormInput name="Email" id="email" placeholder="hello@example.com" />
     <Button type="submit" customIcon>Submit
@@ -17,6 +17,12 @@ import { Button, FormInput } from "@components/odyssey-theme";
 <div id="response-message" style="margin-top: 1rem;"></div>
 
 <script>
+  
+  console.log("Script loaded");
+document.getElementById("newsletter-form").addEventListener("submit", (event) => {
+  console.log("Form submitted");
+});
+
   document.getElementById("newsletter-form").addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
@@ -24,7 +30,7 @@ import { Button, FormInput } from "@components/odyssey-theme";
     const responseMessage = document.getElementById("response-message");
     const email = emailInput.value.trim();
 
-    responseMessage.innerHTML = ""; // Clear any previous messages
+    responseMessage.innerHTML = ""; 
 
     if (!email) {
       responseMessage.innerHTML = '<span style="color: red;">Email is required!</span>';
