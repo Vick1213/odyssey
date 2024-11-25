@@ -28,6 +28,9 @@
 	},
 	"dependencies": {
 		"@astrojs/vercel": "^7.8.2",
+		"body-parser": "^1.20.3",
+		"express": "^4.21.1",
+		"googleapis": "^144.0.0",
 		"vercel": "^39.1.0"
 	}
 }
