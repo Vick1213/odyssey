@@ -1,6 +1,5 @@
 import { google } from "googleapis";
 
-const SERVICE_ACCOUNT_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
 const SHEET_ID = "1M9Piv20GgW4Cbz0Adh9oJspddlzCj2wMrZXMfyIBTHc";
 
 export default async function handler(req, res) {
@@ -12,6 +11,9 @@ export default async function handler(req, res) {
     }
 
     try {
+      // Parse the service account key
+      const SERVICE_ACCOUNT_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
+
       // Authenticate with Google Sheets API
       const auth = new google.auth.GoogleAuth({
         credentials: SERVICE_ACCOUNT_KEY,
