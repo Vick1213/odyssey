@@ -1,0 +1,91 @@
+---
+import {Icon} from 'astro-icon/components';
+import { Button, Container, TextCardSection } from '../../components/odyssey-theme';
+import Layout from '../../layouts/Page.astro';
+
+const seo = {
+	title: 'Understand SocialScape',
+	description: 'Learn More about SocialScape'
+};
+---
+
+<Layout {seo}>
+	<Container>
+		<TextCardSection>
+			<h1>Work With SocialScape, Get Results</h1>
+			<p>
+				SocialScape specializes in assisting cybersecurity firms in acquiring high-value clients through targeted outbound outreach. 
+				We focus on regulated industries such as banking, healthcare, and gaming, where robust security and compliance are paramount.
+			</p>
+			<p>
+				Our approach includes crafting highly personalized outreach campaigns to connect your firm with key decision-makers. 
+				We help you develop a compelling offer that addresses your target clients' specific cybersecurity needs, positioning your firm as the optimal solution. 
+				By implementing a proven outreach model via LinkedIn and email, we aim to schedule over 20 qualified meetings monthly, leading to new high-value clients within 90 days, guaranteed.
+			</p>
+			<p>
+				Partnering with SocialScape can lead to increased revenue, predictable cash flow, and a streamlined outreach strategy, 
+				allowing your team to concentrate on delivering exceptional cybersecurity services.
+			</p>
+			<p>
+				To learn more about how SocialScape can help your cybersecurity firm secure high-value clients, please visit our website or contact us directly.
+			</p>
+			
+			<h2>Contact Information:</h2>
+			<ul>
+				<li>Email: <a href="mailto:Contact@trysocialscape.co.uk">Contact Us</a></li>
+				<li>Phone (UK): +44 7407 042 644</li>
+				<li>Phone (US): +1 480 952 6946</li>
+			</ul>
+			
+			<h2>Registered Office:</h2>
+			<address>
+				Unit 3D North Point House,<br />
+				North Point Business Park,<br />
+				New Mallow Road, Cork<br />
+				T23 AT2P<br />
+				Ireland
+			</address>
+			
+			<div class="cta-buttons__container">
+				<Button
+					href="/company/contact"
+					outlined
+					newTab
+					customIcon
+				>
+Get in  contact today			<Fragment slot="icon">
+						<Icon name="ic:baseline-launch" />
+					</Fragment>
+				</Button>
+				<Button
+					href="/theme/theme-setup"
+					customIcon
+				>
+					Theme Setup
+					<Fragment slot="icon">
+						<Icon name="ic:baseline-chevron-right" />
+					</Fragment>
+				</Button>
+				<Button
+					href="/theme/customizing-odyssey"
+					customIcon
+				>
+					Customizing Odyssey
+					<Fragment slot="icon">
+						<Icon name="ic:baseline-chevron-right" />
+					</Fragment>
+				</Button>
+			</div>
+		</TextCardSection>
+	</Container>
+</Layout>
+
+<style>
+	.cta-buttons__container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.cta-buttons__container :global(a) {
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+	}
