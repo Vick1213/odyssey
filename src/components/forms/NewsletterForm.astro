@@ -4,7 +4,7 @@ import {Button, FormInput } from "@components/odyssey-theme";
 
 ---
 
-<form name="Newsletter Form" method="POST" action="/api/submit-newsletter">
+<form name="Newsletter Form">
   <div class="newsletter-form__container">
     <FormInput name="Email" placeholder="hello@example.com"/>
     <Button customIcon>Submit
@@ -14,6 +14,37 @@ import {Button, FormInput } from "@components/odyssey-theme";
     </Button>
   </div>
 </form>
+
+
+<div id="response-message" style="margin-top: 1rem;"></div>
+
+<script>
+  document.getElementById("newsletter-form").addEventListener("submit", async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const responseMessage = document.getElementById("response-message");
+
+    try {
+      const response = await fetch("/api/submit-newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Email: email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        responseMessage.innerHTML = `<span style="color: green;">${data.message}</span>`;
+      } else {
+        responseMessage.innerHTML = `<span style="color: red;">${data.error || "An error occurred."}</span>`;
+      }
+    } catch (error) {
+      responseMessage.innerHTML = `<span style="color: red;">Failed to submit. Please try again later.</span>`;
+      console.error("Error submitting the form:", error);
+    }
+  });
+</script>
 
 <style>
 .newsletter-form__container {

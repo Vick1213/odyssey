@@ -1,6 +1,6 @@
 import { google } from "googleapis";
 
-const SHEET_ID = "1M9Piv20GgW4Cbz0Adh9oJspddlzCj2wMrZXMfyIBTHc";
+const SHEET_ID = "1lPCtFC25zNmUJcO5fmX7a7pc9yzMqGIGGUcIvrfkP4A";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Parse the service account key
+      // Parse the service account key from environment variable
       const SERVICE_ACCOUNT_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
 
       // Authenticate with Google Sheets API
@@ -32,10 +32,10 @@ export default async function handler(req, res) {
         },
       });
 
-      return res.status(200).json({ message: "Email added successfully!" });
+      return res.status(200).json({ success: true, message: "Email added successfully!" });
     } catch (error) {
       console.error("Error appending to Google Sheets:", error);
-      return res.status(500).json({ error: "Failed to save email." });
+      return res.status(500).json({ success: false, error: "Failed to save email." });
     }
   } else {
     res.setHeader("Allow", ["POST"]);
