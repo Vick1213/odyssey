@@ -20,10 +20,18 @@ import {Button, FormInput } from "@components/odyssey-theme";
 
 <script>
   document.getElementById("newsletter-form").addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent default form submission behavior
 
-    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const emailInput = document.querySelector<HTMLInputElement>("#email");
     const responseMessage = document.getElementById("response-message");
+    const email = (emailInput as HTMLInputElement).value.trim();
+
+    responseMessage.innerHTML = ""; // Clear any previous messages
+
+    if (!email) {
+      responseMessage.innerHTML = '<span style="color: red;">Email is required!</span>';
+      return;
+    }
 
     try {
       const response = await fetch("/api/submit-newsletter", {
@@ -36,11 +44,12 @@ import {Button, FormInput } from "@components/odyssey-theme";
 
       if (response.ok) {
         responseMessage.innerHTML = `<span style="color: green;">${data.message}</span>`;
+        emailInput.value = ""; // Clear the input field after successful submission
       } else {
         responseMessage.innerHTML = `<span style="color: red;">${data.error || "An error occurred."}</span>`;
       }
     } catch (error) {
-      responseMessage.innerHTML = `<span style="color: red;">Failed to submit. Please try again later.</span>`;
+      responseMessage.innerHTML = '<span style="color: red;">Failed to submit. Please try again later.</span>';
       console.error("Error submitting the form:", error);
     }
   });

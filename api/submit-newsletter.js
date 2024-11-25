@@ -11,10 +11,8 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Parse the service account key from environment variable
       const SERVICE_ACCOUNT_KEY = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
 
-      // Authenticate with Google Sheets API
       const auth = new google.auth.GoogleAuth({
         credentials: SERVICE_ACCOUNT_KEY,
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],
@@ -22,10 +20,9 @@ export default async function handler(req, res) {
 
       const sheets = google.sheets({ version: "v4", auth });
 
-      // Append the email to the Google Sheet
       await sheets.spreadsheets.values.append({
         spreadsheetId: SHEET_ID,
-        range: "Sheet1!A:A", // Adjust range if needed
+        range: "Sheet1!A:A",
         valueInputOption: "RAW",
         requestBody: {
           values: [[Email]],
