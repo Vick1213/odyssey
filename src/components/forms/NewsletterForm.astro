@@ -1,12 +1,11 @@
 ---
-import {Icon} from 'astro-icon/components'
-import {Button, FormInput } from "@components/odyssey-theme";
-
+import { Icon } from "astro-icon/components";
+import { Button, FormInput } from "@components/odyssey-theme";
 ---
 
-<form name="Newsletter Form">
+<form id="newsletter-form">
   <div class="newsletter-form__container">
-    <FormInput name="Email" placeholder="hello@example.com"/>
+    <FormInput name="Email" id="email" placeholder="hello@example.com" />
     <Button customIcon>Submit
       <Fragment slot="icon">
         <Icon name="ic:baseline-chevron-right" />
@@ -15,16 +14,15 @@ import {Button, FormInput } from "@components/odyssey-theme";
   </div>
 </form>
 
-
 <div id="response-message" style="margin-top: 1rem;"></div>
 
 <script>
   document.getElementById("newsletter-form").addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const emailInput = document.querySelector<HTMLInputElement>("#email");
+    const emailInput = document.getElementById("email") as HTMLInputElement;
     const responseMessage = document.getElementById("response-message");
-    const email = (emailInput as HTMLInputElement).value.trim();
+    const email = emailInput.value.trim();
 
     responseMessage.innerHTML = ""; // Clear any previous messages
 
