@@ -18,19 +18,22 @@ import { Button, FormInput } from "@components/odyssey-theme";
 
 <script>
   
-  console.log("Script loaded");
-document.getElementById("newsletter-form").addEventListener("submit", (event) => {
-  console.log("Form submitted");
-});
-
   document.getElementById("newsletter-form").addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const emailInput = document.getElementById("email") as HTMLInputElement;
-    const responseMessage = document.getElementById("response-message");
-    const email = emailInput.value.trim();
+    // Attempt to find the input element
+    let emailInput = document.querySelector("#email") || document.querySelector("form [name='Email']");
+    console.log("Email Input Element:", emailInput);
 
-    responseMessage.innerHTML = ""; 
+    if (!emailInput) {
+      alert("Cannot find email input element.");
+      return;
+    }
+
+    const email = (emailInput as HTMLInputElement).value.trim();
+    const responseMessage = document.getElementById("response-message");
+
+    responseMessage.innerHTML = ""; // Clear any previous messages
 
     if (!email) {
       responseMessage.innerHTML = '<span style="color: red;">Email is required!</span>';
@@ -48,7 +51,7 @@ document.getElementById("newsletter-form").addEventListener("submit", (event) =>
 
       if (response.ok) {
         responseMessage.innerHTML = `<span style="color: green;">${data.message}</span>`;
-        emailInput.value = ""; // Clear the input field after successful submission
+        (emailInput as HTMLInputElement).value = ""; // Clear the input field after successful submission
       } else {
         responseMessage.innerHTML = `<span style="color: red;">${data.error || "An error occurred."}</span>`;
       }
@@ -58,6 +61,7 @@ document.getElementById("newsletter-form").addEventListener("submit", (event) =>
     }
   });
 </script>
+
 
 <style>
 .newsletter-form__container {
